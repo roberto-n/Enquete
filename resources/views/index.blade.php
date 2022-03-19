@@ -3,14 +3,25 @@
 @section('conteúdo')
 
 <classe div="contêiner">
-        <p>Titulo </p>
-        <br>
-        <p>Descrição </p>        
-        <br>
-        <p>Data De Inicio </p>
-        <br>
-        <p>Data De Termino </p>
-        <br>
-        
+@if($Enquete)
+@foreach ($Enquete as $Enquete)
+
+<table>
+  <tr>
+    <th>Titulo</th>
+    <th>{{$Enquete->titulo}}</th>
+  </tr>
+  <tr>
+    <td>Data De Inicio</td>
+    <td>{{$Enquete->data_de_inicio}}</td>
+  </tr>
+  <tr>
+    <td>Data De Termino</td>
+    <td>{{$Enquete->data_de_termino}}</td>
+  </tr>
+</table>
+@endforeach
+@else
+@endif
 </div>
 @endsection

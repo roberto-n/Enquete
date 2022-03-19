@@ -4,9 +4,13 @@
 
 <classe div="contêiner">
 
-<form action ="{{ route('') }}" method="POST">
+<form action ="{{ route('update') }}" method="POST">
         @csrf
-        <p>Titulo Atual</p>
+        <p>Titulo Atual:</p>
+        @if($Enquete)
+        <p>{{$Enquete->titulo}}</p>
+        @else
+        @endif
         <label  for = " titulo " >Titulo  </ label >
         <input type="text" name = " titulo  " > </input>
         @error('titulo')
@@ -14,7 +18,11 @@
         @enderror
 
          <br> 
-         <p>Descrição Atual</p>        
+         <p>Descrição Atual</p>
+         @if($Enquete)
+         <p>{{$Enquete->descricao}}</p> 
+         @else
+        @endif      
         <label  for = " descricao " >Descrição'</ label >
         <input  type = " text "  name = "descricao'" ></input>
              
@@ -23,6 +31,10 @@
         @enderror
         <br>  
         <p>Data De Inicio Atual</p>
+        @if($Enquete)
+        <p>{{$Enquete->data_de_inicio}}</p> 
+        @else
+        @endif 
         <label  for = " data_de_inicio" >Data De Inicio</label >
         <input  type = " date "  name = "data_de_inicio" ></input>
         @error('data_de_inicio')
@@ -30,6 +42,10 @@
         @enderror
 <br>         
         <p>Data De Termino Atual</p>
+        @if($Enquete)
+        <p>{{$Enquete->data_de_termino}}</p>
+        @else
+        @endif  
         <label  for = " data_de_termino " >Data De Termino</label>
         <input type=" date " name = "data_de_termino" ></input>
         @error('data_de_termino')
@@ -37,13 +53,17 @@
         @enderror
         <br>  
         <p>Opções  Atuais</p>
+        @if($Opcoes)
+        <p>{{$Opcoes->opcao}}</p>
+        @else
+        @endif
         <p>digite as opçoes separadas por ,</p>
         <label  for = " opcao" >Opções:</label >
         <input  type = " text "  name = "opcao" ></input>
         @error('opcao')
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-        <button type="submit" value="Submit">Cadastrar</button>
+        <button type="submit" value="Submit">Editar</button>
   </form>
 </div>
 @endsection

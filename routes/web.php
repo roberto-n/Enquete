@@ -22,3 +22,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route:: get ( 'index' ,[ DowloadController ::class, 'index' ])-> name ( 'index' );
+Route:: get ( 'criar' ,[ DowloadController ::class, 'create' ])-> name ( 'create' );
+Route:: post ( 'store' ,[ DowloadController ::class, 'store' ])-> name ( 'store' );
+Route:: get ( 'mostrar/{$id}' ,[ DowloadController ::class, 'show' ])-> name ( 'show' );
+Route:: get ( 'editar/{$id}' ,[ DowloadController ::class, 'edit' ])-> name ( 'edit' );
+Route:: post( 'update/{$id}' ,[ DowloadController ::class, 'update' ])-> name ( 'update' );
+Route:: get ( 'deletar/{$id}' ,[ DowloadController ::class, 'destroy' ])-> name ( 'destroy' );

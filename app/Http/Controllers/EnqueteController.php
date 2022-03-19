@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Enquete;
+use App\Models\Opcoes;
 
 class EnqueteController extends Controller
 {
@@ -13,7 +15,8 @@ class EnqueteController extends Controller
      */
     public function index()
     {
-        //
+        $Enquetes=Enquete::orderBy ( 'created_at' , 'desc' )-> all();
+         return view('index',compact('Enquetes'));
     }
 
     /**
@@ -23,7 +26,7 @@ class EnqueteController extends Controller
      */
     public function create()
     {
-        //
+        return view('criar');
     }
 
     /**
@@ -34,7 +37,15 @@ class EnqueteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $Enquete=Enquete::create($request->all());
+       $Opcoes=explode(",", $request->input('opcao'));
+       foreach ($Opcoes as $key => $valor) {
+        $opcao = new Opcoes;
+        $opcao->opcao_id = $Enquete->id;
+        $opcao->opcao = $valor;
+        $opcao->save();
+      }
+       return view('criar');
     }
 
     /**
@@ -45,7 +56,11 @@ class EnqueteController extends Controller
      */
     public function show($id)
     {
-        //
+
+        
+        $Enquete=Enquete::where('id',$id)->get();
+        $Opcoes=Opcoes::where('opcao_id',$id)->get();
+        return view('show',compact('Enquete','Opcoes'));
     }
 
     /**
@@ -56,7 +71,10 @@ class EnqueteController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $Enquete=Enquete::where('id',$id)->get();
+        $Opcoes=Opcoes::where('opcao_id',$id)->get();
+        return view('edit',compact('Enquete','Opcoes'));
     }
 
     /**
@@ -68,7 +86,10 @@ class EnqueteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Enquete=Enquete::where('id',$id)->get();
+        $Enquete->update($request->all());
+        $Opcoes=Opcoes::where('opcao_id',$id)->get();
+        $Opcoes->matriculas()->sync($id);
     }
 
     /**
@@ -79,6 +100,10 @@ class EnqueteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $matriculas=Enquete::where('id',$id)->first();
+        $matriculas->Opcoes()->detach();
+        $matriculas->delete();
+        return ['msg'=>'Enquete deletada com sucesso'];
     }
+    
 }

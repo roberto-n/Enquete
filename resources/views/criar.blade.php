@@ -2,9 +2,10 @@
 
 @section('conteúdo')
 
+
 <classe div="contêiner">
 
-<form action ="{{ route('') }}" method="POST">
+<form action ="{{ route('store') }}" method="POST">
         @csrf
         <label  for = " titulo " >Titulo  </ label >
         <input type="text" name = " titulo  " > </input>
