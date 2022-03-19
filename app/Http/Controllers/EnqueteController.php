@@ -15,8 +15,8 @@ class EnqueteController extends Controller
      */
     public function index()
     {
-        $Enquetes=Enquete::orderBy ( 'created_at' , 'desc' )-> all();
-         return view('index',compact('Enquetes'));
+        $Enquetes=Enquete::all();
+        return view('index',compact('Enquetes'));
     }
 
     /**
@@ -25,7 +25,8 @@ class EnqueteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { 
+        
         return view('criar');
     }
 
@@ -37,6 +38,7 @@ class EnqueteController extends Controller
      */
     public function store(Request $request)
     {
+        
        $Enquete=Enquete::create($request->all());
        $Opcoes=explode(",", $request->input('opcao'));
        foreach ($Opcoes as $key => $valor) {
@@ -45,6 +47,7 @@ class EnqueteController extends Controller
         $opcao->opcao = $valor;
         $opcao->save();
       }
+      
        return view('criar');
     }
 
@@ -60,7 +63,9 @@ class EnqueteController extends Controller
         
         $Enquete=Enquete::where('id',$id)->get();
         $Opcoes=Opcoes::where('opcao_id',$id)->get();
-        return view('show',compact('Enquete','Opcoes'));
+        
+        
+        return view('enquete',compact('Enquete','Opcoes'));
     }
 
     /**

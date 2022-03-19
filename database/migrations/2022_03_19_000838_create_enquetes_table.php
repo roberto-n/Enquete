@@ -17,8 +17,8 @@ class CreateEnquetesTable extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('descricao');
-            $table->timestamp('data_de_inicio');
-            $table->timestamp('data_de_termino');
+            $table->dateTime('data_de_inicio');
+            $table->dateTime('data_de_termino');
             $table->timestamps();
         });
     }

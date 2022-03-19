@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EnqueteController;
+use App\Models\Enquete;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +25,11 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route:: get ( 'index' ,[ DowloadController ::class, 'index' ])-> name ( 'index' );
-Route:: get ( 'criar' ,[ DowloadController ::class, 'create' ])-> name ( 'create' );
-Route:: post ( 'store' ,[ DowloadController ::class, 'store' ])-> name ( 'store' );
-Route:: get ( 'mostrar/{$id}' ,[ DowloadController ::class, 'show' ])-> name ( 'show' );
-Route:: get ( 'editar/{$id}' ,[ DowloadController ::class, 'edit' ])-> name ( 'edit' );
-Route:: post( 'update/{$id}' ,[ DowloadController ::class, 'update' ])-> name ( 'update' );
-Route:: get ( 'deletar/{$id}' ,[ DowloadController ::class, 'destroy' ])-> name ( 'destroy' );
+Route:: get ( 'index' ,[ EnqueteController::class, 'index' ])-> name ( 'index' );
+Route:: get ( 'criar' ,[ EnqueteController::class, 'create' ])-> name ( 'create' );
+Route:: post ( 'store' ,[ EnqueteController::class, 'store' ])-> name ( 'store' );
+Route:: get ( 'mostrar/{id}' ,[ EnqueteController::class, 'show' ])-> name ( 'show' );
+Route:: get ( 'editar/{id}' ,[ EnqueteController::class, 'edit' ])-> name ( 'edit' );
+Route:: post( 'update/{id}' ,[ EnqueteController::class, 'update' ])-> name ( 'update' );
+Route:: get ( 'deletar/{id}' ,[ EnqueteController::class, 'destroy' ])-> name ( 'destroy' );
+Route:: post ( 'voto' ,[ EnqueteController::class, 'voto' ])-> name ( 'voto' );

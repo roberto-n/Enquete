@@ -15,7 +15,7 @@ class CreateOpcoesTable extends Migration
     {
         Schema::create('opcoes', function (Blueprint $table) {
             $table->id();
-            $table->integer('opcao_id')->unsigned();
+            $table->bigInteger('opcao_id')->unsigned();
             $table->foreign('opcao_id')->references('id')->on('enquetes');
             $table->string('opcao');
             $table->integer('votos')->default(0);

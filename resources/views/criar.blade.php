@@ -1,3 +1,5 @@
+@extends('layouts.basico')
+
 @section('titulo', 'criar' )
 
 @section('conteúdo')
@@ -7,17 +9,17 @@
 
 <form action ="{{ route('store') }}" method="POST">
         @csrf
-        <label  for = " titulo " >Titulo  </ label >
-        <input type="text" name = " titulo  " > </input>
+        <label  for = "titulo" >Titulo</label>
+        <input type="text" name = "titulo" > </input>
         @error('titulo')
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
          <br>         
-        <label  for = " descricao " >Descrição'</ label >
-        <input  type = " text "  name = "descricao'" ></input>
+        <label  for = " descricao " >Descrição</label>
+        <input  type = " text "  name = "descricao" ></input>
              
-        @error('descricao'')
+        @error('descricao')
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <br>  
