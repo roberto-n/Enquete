@@ -15,8 +15,8 @@ class Opcoes extends Model
         'voto',
  
      ];
-     public function Opcoes(){
+     public function Enquete(){
 
-        return $this->belongsToMany(Enquete::class,'matriculas','curso_id',);
+        return $this->belongsTo(Enquete::class);
     }
 }

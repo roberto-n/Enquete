@@ -24,13 +24,13 @@
         @enderror
         <br>  
         <label  for = " data_de_inicio" >Data De Inicio</label >
-        <input  type = " date "  name = "data_de_inicio" ></input>
+        <input  type ="datetime-local"  name = "data_de_inicio" ></input>
         @error('data_de_inicio')
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 <br>         
         <label  for = " data_de_termino " >Data De Termino</label>
-        <input type=" date " name = "data_de_termino" ></input>
+        <input type="datetime-local" name = "data_de_termino" ></input>
         @error('data_de_termino')
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror

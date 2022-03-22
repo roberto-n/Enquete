@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Enquete;
 use App\Models\Opcoes;
+use \App\Http\Requests\CreateEnqueteRequest;
 
 class EnqueteController extends Controller
 {
@@ -33,15 +34,15 @@ class EnqueteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CreateEnqueteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateEnqueteRequest $request)
     {
         
-       $Enquete=Enquete::create($request->all());
+        $Enquete=Enquete::create($request->all());
        $Opcoes=explode(",", $request->input('opcao'));
-       foreach ($Opcoes as $key => $valor) {
+       foreach ($Opcoes as $key => $valor){
         $opcao = new Opcoes;
         $opcao->opcao_id = $Enquete->id;
         $opcao->opcao = $valor;
@@ -79,7 +80,7 @@ class EnqueteController extends Controller
         
         $Enquete=Enquete::where('id',$id)->get();
         $Opcoes=Opcoes::where('opcao_id',$id)->get();
-        return view('edit',compact('Enquete','Opcoes'));
+        return view('editar',compact('Enquete','Opcoes'));
     }
 
     /**
@@ -91,10 +92,11 @@ class EnqueteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $Enquete=Enquete::where('id',$id)->get();
-        $Enquete->update($request->all());
-        $Opcoes=Opcoes::where('opcao_id',$id)->get();
-        $Opcoes->matriculas()->sync($id);
+        $Enquete=Enquete::find($id)->update($request->all());
+        $OpcoesAntigas=Opcoes::where('opcao_id',$id)->get();
+        $OpcoesNovas=explode(",", $request->input('opcao'));
+        return ['msg'=>'Enquete editada com sucesso'];
+        
     }
 
     /**
@@ -105,10 +107,26 @@ class EnqueteController extends Controller
      */
     public function destroy($id)
     {
-        $matriculas=Enquete::where('id',$id)->first();
-        $matriculas->Opcoes()->detach();
-        $matriculas->delete();
+        $Enquete=Enquete::where('id',$id)->first();
+        $Enquete->delete();
         return ['msg'=>'Enquete deletada com sucesso'];
     }
     
+    /**
+     * Update the Voto  in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function voto(Request $request,)
+    { 
+        
+        $valor=$request->input('custId');
+        $Opcoes=Opcoes::find($valor);
+        $Opcoes->votos=+1;
+        $Opcoes->save();
+        return ['msg'=>'Enquete votada com sucesso'];
+
+    }
 }
