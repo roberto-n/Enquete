@@ -39,9 +39,9 @@ class EnqueteController extends Controller
      */
     public function store(CreateEnqueteRequest $request)
     {
-        
+        dd($request);
         $Enquete=Enquete::create($request->all());
-       $Opcoes=explode(",", $request->input('opcao'));
+       $Opcoes=[$request->input('opcao'),$request->input('opcao2'),$request->input('opcao3')];
        foreach ($Opcoes as $key => $valor){
         $opcao = new Opcoes;
         $opcao->opcao_id = $Enquete->id;
@@ -128,5 +128,17 @@ class EnqueteController extends Controller
         $Opcoes->save();
         return ['msg'=>'Enquete votada com sucesso'];
 
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getvoto($id)
+    {
+        $Opcoes=Opcoes::where('opcao_id',$id)->get();
+        return $Opcoes;
     }
 }

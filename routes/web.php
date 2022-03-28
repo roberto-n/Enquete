@@ -33,3 +33,5 @@ Route:: get ( 'editar/{id}' ,[ EnqueteController::class, 'edit' ])-> name ( 'edi
 Route:: post( 'update/{id}' ,[ EnqueteController::class, 'update' ])-> name ( 'update' );
 Route:: get ( 'deletar/{id}' ,[ EnqueteController::class, 'destroy' ])-> name ( 'destroy' );
 Route:: post ( 'voto' ,[ EnqueteController::class, 'voto' ])-> name ( 'voto' );
+Route:: get( 'getvoto/{id}' ,[ EnqueteController::class, 'getvoto' ])-> name ( 'getvoto' );
+
