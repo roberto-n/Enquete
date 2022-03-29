@@ -7,7 +7,7 @@
 
 <classe div="contêiner">
 
-<form action ="{{ route('store') }}" method="POST">
+<form action ="{{ route('store') }}" method="POST" id="form1">
         @csrf
         <label  for = "titulo" >Titulo</label>
         <input type="text" name = "titulo" > </input>
@@ -35,7 +35,7 @@
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <br>  
-        <p>digite as opçoes separadas por ,</p>
+        <p>digite as opçoes que deseja em sua enquete</p>
         <label  for = " opcao" >Opção:</label >
         <input  type = " text "  name = "opcao" ></input>
         @error('opcao')
@@ -47,32 +47,38 @@
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <label  for = " opcao3" >Opção:</label >
-        <input  type = " text "  name = "opcao3" ></input>
+        <input  type = " text "  name = "opcao3" id="utimoobrigatorio"></input>
         @error('opcao')
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
 <script>
-    let id=0
+    let id=1
     function criaropcao(){
-        event.preventDefault();
+       
         const labelopcao = document.createElement("label");
         labelopcao.id =id ;
         id=id+1
+        labelopcao.for=id;
+        
         const texto = document.createTextNode('Opçao:');
         labelopcao.appendChild(texto);
-        labelopcao.insertBefore(labelopcao, itens[0]);
-        const body = document.body;
-        body.appendChild(labelopcao);
+        const form = document.getElementById("form1");
+        const utimoobrigatorio = document.getElementById("envia");
+        form.insertBefore(labelopcao, utimoobrigatorio);
         const opcao = document.createElement("input");
         opcao.id = id;
+        opcao.type="text";
+        opcao.name=id
         id=id+1
-        body.appendChild(opcao);
+        
+        form.insertBefore(opcao, utimoobrigatorio);
+       
     }
 
     </script>
-        <button onclick="criaropcao()">Mais opçoes</button>
-        <button type="submit" value="Submit">Cadastrar</button>
+        <button type="button" onclick="criaropcao()">Mais opçoes</button>
+        <button id="envia" type="submit" value="Submit">Cadastrar</button>
   </form>
   
 </div>

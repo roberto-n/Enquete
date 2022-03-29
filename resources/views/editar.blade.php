@@ -37,7 +37,7 @@
         @else
         @endif 
         <label  for ="data_de_inicio">Nova Data De Inicio:</label >
-        <input  type = " date "name = "data_de_inicio" ></input>
+        <input  type = "datetime-local"name = "data_de_inicio" ></input>
         @error('data_de_inicio')
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -48,7 +48,7 @@
         @else
         @endif  
         <label  for = " data_de_termino " >Nova Data De Termino:</label>
-        <input type=" date " name = "data_de_termino" ></input>
+        <input type="datetime-local" name = "data_de_termino" ></input>
         @error('data_de_termino')
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -57,8 +57,8 @@
         @if($Opcoes)
         @foreach ($Opcoes as $Opcao)
         <p>{{$Opcao->opcao}}</p>
-        <label  for = " opçãoeditada " >Opção editada:</label>
-        <input  type = "text"  id='{{$Opcao->id}}' name ="opcaoeditada"></input>
+        <label  for = " '{{$Opcao->id}}'" >Opção editada:</label>
+        <input  type = "text"  id='{{$Opcao->id}}' name ='{{$Opcao->id}}'></input>
         @endforeach
         @else
         @endif

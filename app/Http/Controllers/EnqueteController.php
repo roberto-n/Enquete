@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Enquete;
 use App\Models\Opcoes;
 use \App\Http\Requests\CreateEnqueteRequest;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 
 class EnqueteController extends Controller
 {
@@ -39,9 +40,18 @@ class EnqueteController extends Controller
      */
     public function store(CreateEnqueteRequest $request)
     {
-        dd($request);
+        
         $Enquete=Enquete::create($request->all());
        $Opcoes=[$request->input('opcao'),$request->input('opcao2'),$request->input('opcao3')];
+     
+       if($request->input('2') == True){
+        $datas = request()->all();
+        $datafiltrada = array_filter($datas,function($datas){
+            return (is_numeric($datas)) ;
+
+        }, ARRAY_FILTER_USE_KEY);
+        $Opcoes=array_merge($Opcoes,$datafiltrada);
+       }
        foreach ($Opcoes as $key => $valor){
         $opcao = new Opcoes;
         $opcao->opcao_id = $Enquete->id;
@@ -92,9 +102,32 @@ class EnqueteController extends Controller
      */
     public function update(Request $request, $id)
     {
+      
         $Enquete=Enquete::find($id)->update($request->all());
+        
         $OpcoesAntigas=Opcoes::where('opcao_id',$id)->get();
-        $OpcoesNovas=explode(",", $request->input('opcao'));
+        foreach ($OpcoesAntigas as $opcoes){
+            $ArrayOpcoesAntigasid[]=$opcoes->id;
+            $ArrayOpcoesAntigas[]=$opcoes->opcao;
+        }
+       foreach ($ArrayOpcoesAntigasid as $value){
+           $OpcoesEmEdicao[$value]=$request->input($value);
+       }
+       $OpcoesEditadas=array_diff($OpcoesEmEdicao,$ArrayOpcoesAntigas,);
+       foreach ($OpcoesAntigas as $opcoes){
+           if(isset($OpcoesEditadas[$opcoes->id]) ){
+            $opcoes->update([
+                "opcao" =>$OpcoesEditadas[$opcoes->id],
+            ]);
+        }
+    }
+      $OpcoesNovas=explode(",", $request->input('opcao'));
+       foreach ($OpcoesNovas as $key => $valor){
+        $opcao = new Opcoes;
+        $opcao->opcao_id =$id;
+        $opcao->opcao = $valor;
+        $opcao->save();
+   }
         return ['msg'=>'Enquete editada com sucesso'];
         
     }
