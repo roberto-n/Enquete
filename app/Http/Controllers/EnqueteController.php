@@ -73,7 +73,7 @@ class EnqueteController extends Controller
 
         
         $Enquete=Enquete::where('id',$id)->get();
-        $Opcoes=Opcoes::where('opcao_id',$id)->get();
+        $Opcoes=Opcoes::where('enquete_id',$id)->get();
         
         
         return view('enquete',compact('Enquete','Opcoes'));
@@ -89,7 +89,7 @@ class EnqueteController extends Controller
     {
         
         $Enquete=Enquete::where('id',$id)->get();
-        $Opcoes=Opcoes::where('opcao_id',$id)->get();
+        $Opcoes=Opcoes::where('enquete_id',$id)->get();
         return view('editar',compact('Enquete','Opcoes'));
     }
 
@@ -105,7 +105,7 @@ class EnqueteController extends Controller
       
         $Enquete=Enquete::find($id)->update($request->all());
         
-        $OpcoesAntigas=Opcoes::where('opcao_id',$id)->get();
+        $OpcoesAntigas=Opcoes::where('enquete_id',$id)->get();
         foreach ($OpcoesAntigas as $opcoes){
             $ArrayOpcoesAntigasid[]=$opcoes->id;
             $ArrayOpcoesAntigas[]=$opcoes->opcao;
@@ -171,7 +171,7 @@ class EnqueteController extends Controller
      */
     public function getvoto($id)
     {
-        $Opcoes=Opcoes::where('opcao_id',$id)->get();
+        $Opcoes=Opcoes::where('enquete_id',$id)->get();
         return $Opcoes;
     }
 }

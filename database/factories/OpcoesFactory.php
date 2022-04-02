@@ -23,7 +23,7 @@ class OpcoesFactory extends Factory
     public function definition()
     {
         return [
-            "opcao_id" => 1,
+            "enquete_id" => 1,
             "opcao"  =>$this->faker->text,
            "votos" =>$this->faker->randomNumber($nbDigits = NULL, $strict = false),
         ];
