@@ -3,7 +3,7 @@
 
 @section('conteúdo')
 
-<classe div="contêiner">
+<div class="conteiner">
 
 <form action ="{{ route('update',$Enquete[0]->id) }}" method="POST">
         @csrf

@@ -3,33 +3,34 @@
 
 @section('conteúdo')
 
-<classe div="contêiner">
+<div class ="conteinerindex">
 @if($Enquetes)
 @foreach ($Enquetes as $Enquete)
 
-<table>
+<table class="tableindex">
   <tr>
-    <th>Titulo</th>
     <th>{{$Enquete->titulo}}</th>
   </tr>
+  
   <tr>
-    <td>Data De Inicio</td>
+    <td>Data De Inicio:</td>
+    
     <td>{{$Enquete->data_de_inicio}}</td>
   </tr>
   <tr>
-    <td>Data De Termino</td>
+    <td>Data De Termino:</td>
     <td>{{$Enquete->data_de_termino}}</td>
   </tr>
   <tr>
-    <th>Visualizar</th>
-    <th>
+    <td>
   <form action ="{{ route('show',$Enquete->id ) }}" method="GET">
         @csrf
   <button type="submit" value="Submit">Visualizar</button>
   </form>
-    </th>
+    </td>
   </tr>
 </table>
+
 @endforeach
 @else
 @endif

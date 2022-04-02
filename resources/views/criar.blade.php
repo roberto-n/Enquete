@@ -5,7 +5,8 @@
 @section('conteúdo')
 
 
-<classe div="contêiner">
+
+<div class="conteiner">
 
 <form action ="{{ route('store') }}" method="POST" id="form1">
         @csrf

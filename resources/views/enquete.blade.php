@@ -4,7 +4,7 @@
 
 @section('conteúdo')
 
-<classe div="contêiner">
+<div class="conteiner">
 
         <p>Titulo </p>
         @if($Enquete)

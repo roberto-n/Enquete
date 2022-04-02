@@ -15,8 +15,8 @@ class CreateEnquetesTable extends Migration
     {
         Schema::create('enquetes', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->string('descricao');
+            $table->string('titulo',255);
+            $table->string('descricao',255);
             $table->dateTime('data_de_inicio');
             $table->dateTime('data_de_termino');
             $table->timestamps();

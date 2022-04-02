@@ -13,6 +13,7 @@ class Opcoes extends Model
     protected $fillable = [
         'opcao',
         'voto',
+        'opcao_id',
  
      ];
      public function Enquete(){

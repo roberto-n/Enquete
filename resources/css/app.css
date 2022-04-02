@@ -1,3 +1,49 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+
+.conteiner{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border:solid 1px blue;
+    height: 100%;
+    width: 100%;
+  }
+ 
+  .conteinerindex{
+    display:block;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border:solid 1px blue;
+    margin: 20px;
+   
+  }
+  .tableindex{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border:solid 1px blue;
+  }
+  td{
+    padding: 0px 10px 5px 0px ;
+  }
+  tr{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  nav{
+      height: 200px;
+  }
+  footer{
+    height: 200px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p{
+    display: inline-block;
+}
