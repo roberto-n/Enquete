@@ -54,7 +54,7 @@ class EnqueteController extends Controller
        }
        foreach ($Opcoes as $key => $valor){
         $opcao = new Opcoes;
-        $opcao->opcao_id = $Enquete->id;
+        $opcao->enquete_id = $Enquete->id;
         $opcao->opcao = $valor;
         $opcao->save();
       }
@@ -124,7 +124,7 @@ class EnqueteController extends Controller
       $OpcoesNovas=explode(",", $request->input('opcao'));
        foreach ($OpcoesNovas as $key => $valor){
         $opcao = new Opcoes;
-        $opcao->opcao_id =$id;
+        $opcao->enquete_id =$id;
         $opcao->opcao = $valor;
         $opcao->save();
    }

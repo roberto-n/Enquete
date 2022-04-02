@@ -6,8 +6,18 @@
     border:solid 1px blue;
     height: 100%;
     width: 100%;
+    padding: 10px;
+    line-height: 1,2;
   }
- 
+  label{
+    padding: 5px;
+  }
+  input{
+    padding: 5px;
+  }
+  button{
+    padding: 5px
+  }
   .conteinerindex{
     display:block;
     justify-content: center;
@@ -17,7 +27,6 @@
     margin: 20px;
    
   }
- 
   .tableindex{
     display:flex;
     justify-content: center;
@@ -25,29 +34,36 @@
     flex-wrap: wrap;
     border:solid 1px blue;
   }
- 
   td{
     padding: 0px 10px 5px 0px ;
   }
- 
   tr{
     display:flex;
     justify-content: center;
     align-items: center;
 
   }
- 
   nav{
       height: 200px;
   }
- 
   footer{
     height: 200px;
     display:flex;
     justify-content: center;
     align-items: center;
 }
- 
   p{
     display: inline-block;
+}
+  .conteinerenquete{
+  height: 100%;
+    width: 100%;
+
+}
+  .voto{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  
+  
 }

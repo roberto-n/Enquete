@@ -10,33 +10,35 @@
 
 <form action ="{{ route('store') }}" method="POST" id="form1">
         @csrf
-        <label  for = "titulo" >Titulo</label>
+        <label for = "titulo" >Digite o Titulo de sua enquete :</label>
         <input type="text" name = "titulo" > </input>
         @error('titulo')
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
-         <br>         
-        <label  for = " descricao " >Descrição</label>
+         
+         <br>    
+                     
+        <label  for = " descricao " >Digite a Descrição da enquete:</label>
         <input  type = " text "  name = "descricao" ></input>
              
         @error('descricao')
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <br>  
-        <label  for = " data_de_inicio" >Data De Inicio</label >
+        <label  for = " data_de_inicio" >Digite a Data De Inicio da enquete:</label >
         <input  type ="datetime-local"  name = "data_de_inicio" ></input>
         @error('data_de_inicio')
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 <br>         
-        <label  for = " data_de_termino " >Data De Termino</label>
+        <label  for = " data_de_termino " >Digite a Data De Termino da enquete:</label>
         <input type="datetime-local" name = "data_de_termino" ></input>
         @error('data_de_termino')
     <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <br>  
-        <p>digite as opçoes que deseja em sua enquete</p>
+        <p>Digite as opçoes que deseja na enquete</p>
         <label  for = " opcao" >Opção:</label >
         <input  type = " text "  name = "opcao" ></input>
         @error('opcao')
