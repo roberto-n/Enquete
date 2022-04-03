@@ -62,7 +62,7 @@
         @endforeach
         @else
         @endif
-        <p>digite as novas opçoes separadas por ,</p>
+        <p>Digite as novas opçoes separadas por ,</p>
         <label  for = " opcao" >Opções:</label >
         <input  type = " text "  name = "opcao" ></input>
         @error('opcao')

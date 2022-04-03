@@ -5,32 +5,25 @@
 @section('conteúdo')
 
 <div class="conteinerenquete">
-
-        <p>Titulo </p>
+<div class="titulo">
+        
         @if($Enquete)
-        <p>{{$Enquete[0]->titulo}}</p>
+        <h1>{{$Enquete[0]->titulo}}</h1>
         @else
         @endif
         <br>
-        <p>Descrição </p>
+</div>
+<div class="descricao">
+        <p>Descrição: </p>
         @if($Enquete)
-         <p>{{$Enquete[0]->descricao}}</p> 
+         <h2>{{$Enquete[0]->descricao}}</h2> 
         @else
         @endif           
         <br>
-        <p>Data De Inicio </p>
-        @if($Enquete)
-        <p>{{date( 'd/m/Y h:i:s' , strtotime($Enquete[0]->data_de_inicio))}}</p> 
-        @else
-        @endif 
-        <br>
-        <p>Data De Termino </p>
-        @if($Enquete)
-        <p>{{date( 'd/m/Y h:i:s' , strtotime($Enquete[0]->data_de_termino))}}</p>
-        @else
-        @endif  
-        <div class="voto">
-        @if($Enquete[0]->data_de_inicio > date('Y-m-d H:i:s'))
+</div>
+
+<div class="voto">
+ @if($Enquete[0]->data_de_inicio > date('Y-m-d H:i:s'))
         <form action ="{{ route('voto') }}" method="POST">
         @csrf
         <p>Aguarde o inicio da enquete</p>
@@ -42,7 +35,9 @@
         @csrf
         <button type="submit"  value="Submit" disabled>Votar</button>
         </form>
+       
         @else
+        
         <form action ="{{ route('voto') }}" method="POST" id="a">
         @csrf
         @foreach ($Opcoes as $Opcao)
@@ -104,5 +99,12 @@ setTimeout(() => { Votorealtime(dataatual) }, 100000);
        
         
         </div>
+        <div class="datadeinicio">
+        <p>Enquete disponivel entre : </p>
+        @if($Enquete)
+        <p>{{date( 'd/m/Y h:i:s' , strtotime($Enquete[0]->data_de_inicio))}} e {{date( 'd/m/Y h:i:s' , strtotime($Enquete[0]->data_de_termino))}} </p>
+        @else
+        @endif
+</div>
 </div>
 @endsection
